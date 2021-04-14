@@ -22,8 +22,5 @@ char *_strdup(char *s);
 int _strlen(char *s);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char *_env(char *var, char **env);
-int _strncmp(char *s1, char *s2, int n);
-char *_strtok(char *str, const char *delim);
-int _strlen(char *s);
+
 #endif
