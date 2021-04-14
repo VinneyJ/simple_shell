@@ -16,7 +16,9 @@ char *_readline(void);
 char **split_line(char *line);
 int execute(char **args);
 
+char *_strtok(char *str, const char *delim);
 int _strcmp(char *s1, char *s2);
+int _strncmp(char *s1, char *s2, int n);
 char *_strcpy(char *dest, char *src);
 char *_strdup(char *s);
 int _strlen(char *s);
