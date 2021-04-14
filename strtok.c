@@ -9,34 +9,34 @@
 
 char *_strtok(char *str, const char *delim)
 {
-  static char *next;
-  char *buffer;
-  char *current;
-  int i = 0;
+static char *next;
+char *buffer;
+char *current;
+int i = 0;
 
-  if (str != NULL)
-    current = str;
-  else if (*next != '\0')
-    current = next;
-  else if (*next == '\0')
-    return (NULL);
-  buffer = (char *)malloc(sizeof(char) * 1024);
-  if (!buffer)
-    {
-      free(buffer);
-      perror("Error: ");
-      return (NULL);
-    }
-  while (*current != *delim && *current != '\0')
-    {
-      buffer[i] = *current;
-      i++;
-      current++;
-    }
-  buffer[i] = '\0';
-  if (*current != '\0')
-    next = ++current;
-  else
-    next = current;
-  return (buffer);
+if (str != NULL)
+current = str;
+else if (*next != '\0')
+current = next;
+else if (*next == '\0')
+return (NULL);
+buffer = (char *)malloc(sizeof(char) * 1024);
+if (!buffer)
+{
+free(buffer);
+perror("Error: ");
+return (NULL);
+}
+while (*current != *delim && *current != '\0')
+{
+buffer[i] = *current;
+i++;
+current++;
+}
+buffer[i] = '\0';
+if (*current != '\0')
+next = ++current;
+else
+next = current;
+return (buffer);
 }

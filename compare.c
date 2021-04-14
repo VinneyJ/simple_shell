@@ -11,19 +11,19 @@
 
 int _strncmp(char *s1, char *s2, int n)
 {
-  int remv, c;
+int remv, c;
 
-  remv = 0;
-  c = 0;
-  while (c < n && s2[c])
-    {
-      if (s1[c] != s2[c])
-	{
-	  remv = s1[c] - s2[c];
-	  break;
-	}
-      c++;
-    }
+remv = 0;
+c = 0;
+while (c < n && s2[c])
+{
+if (s1[c] != s2[c])
+{
+remv = s1[c] - s2[c];
+break;
+}
+c++;
+}
 
-  return (remv);
+return (remv);
 }
