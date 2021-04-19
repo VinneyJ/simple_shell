@@ -26,7 +26,7 @@ int _puterror(char c);
 void Sigint_handler(int sign);
 
 char *_getenv(const char *name, char **environ);
-char *appcmd(char *envcmd, char *envdir, char * command);
+char *appcmd(char *envcmd, char *envdir, char *command);
 char **store_path_command(char *fir_com);
 
 void shell_exit(char **args);

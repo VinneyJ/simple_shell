@@ -11,6 +11,7 @@ char *_readline(void)
 {
 	char *buffer = NULL;
 	size_t bufsize = 0;
+
 	if (isatty(STDIN_FILENO))
 		write(STDIN_FILENO, "$ ", 2);
 	if (getline(&buffer, &bufsize, stdin) == -1)

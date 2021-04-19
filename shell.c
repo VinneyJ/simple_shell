@@ -27,15 +27,7 @@ int main(int ac, char **argv)
 			continue;
 		}
 		args = split_line(line);
-/*		if (args == NULL)
-		{
-			free(line);
-			exit(EXIT_SUCCESS);
-		}
-		else
 
-		free(line);
-*/
 		status = execute(argv, args, count);
 
 		free_dbl_ptr(args);
