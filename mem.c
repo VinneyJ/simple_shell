@@ -63,3 +63,25 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 		dest[i] = src[i];
 	return (dest);
 }
+
+/**
+ * free_dbl_ptr - frees alocated memory of a double pointer.
+ * @dbl_ptr: the double pointer to be freed.
+ *
+ * Return: Void.
+ */
+
+void free_dbl_ptr(char **dbl_ptr)
+{
+	unsigned int i;
+
+	if (dbl_ptr == NULL)
+	return ;
+
+	for (i = 0; dbl_ptr[i]; i++)
+		free(dbl_ptr[i]);
+	if (dbl_ptr[i] == NULL)
+		free(dbl_ptr[i]);
+
+	free(dbl_ptr);
+}

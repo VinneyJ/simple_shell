@@ -9,12 +9,12 @@
  * Return: the length of the string.
  */
 
-int _strlen(char *s)
+int _strlen(const char *s)
 {
-	int i, l;
+	int l;
 
-	for (i = 0; s[i] != '\0'; i++)
-		l++;
+	for (l = 0; s[l]; l++)
+		;
 	return (l);
 }
 
@@ -59,6 +59,32 @@ int _strcmp(char *s1, char *s2)
 			break;
 	}
 	return (j);
+}
+
+/**
+ * _strncmp - Compare two strings.
+ * @s1: Pointer to first string.
+ * @s2: Pointer to second string.
+ * @n: The first n bytes of the strings to compare.
+ *
+ * Return: negative number if s1 is shorter than s2, 0 if they
+ *         match, positive number if s1 is longer than s2.
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t i;
+
+	for (i = 0; s1[i] && s2[i] && i < n; i++)
+	{
+		if (s1[i] > s2[i])
+			return (s1[i] - s2[i]);
+		else if (s1[i] < s2[i])
+			return (s1[i] - s2[i]);
+	}
+	if (i == n)
+		return (0);
+	else
+		return (-1);
 }
 
 /**
