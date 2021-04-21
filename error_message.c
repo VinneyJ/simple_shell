@@ -37,9 +37,8 @@ void error_mess(char **argv, char **comm, int count)
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, comm[0], _strlen(comm[0]));
 	write(STDERR_FILENO, ": not found\n", 12);
-
-	free_dbl_ptr(comm);
 }
+
 /**
  * _puterror - puts a char to the STD
  * @c: character to write out
@@ -49,4 +48,25 @@ void error_mess(char **argv, char **comm, int count)
 int _puterror(char c)
 {
 	return (write(STDERR_FILENO, &c, 1));
+}
+
+/**
+ * comm_null - free the buffer when command is null.
+ * @buffer: the buffer created from getline.
+ */
+
+void comm_null(char *buffer)
+{
+	free(buffer);
+	exit(EXIT_SUCCESS);
+}
+/**
+ * fork_fail - handles a fork fail
+ *
+ * Return: void
+ */
+void fork_fail(void)
+{
+	perror("Error:");
+	exit(EXIT_FAILURE);
 }

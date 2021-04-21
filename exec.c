@@ -1,16 +1,15 @@
 #include "holberton.h"
-#include <stdio.h>
-#include <unistd.h>
 
 /**
  * execute - executes a shell program.
  * @argv: the argument vector from main function.
+ * @buffer: the line entered by the user using  getline.
  * @comm: the commands string vector.
  * @count: the number of times a command is executed.
  * Return: the status of the execution.
  */
 
-int execute(char **argv, char **comm, int count)
+int execute(char **argv, char *buffer, char **comm, int count)
 {
 	pid_t child_pid;
 	int status, i;
@@ -19,16 +18,15 @@ int execute(char **argv, char **comm, int count)
 
 	child_pid = fork();
 	if (child_pid == -1)
-	{
-		perror("Error:");
-		exit(EXIT_FAILURE);
-	}
+		fork_fail();
 	if (child_pid == 0)
 	{
-		if (_strcmp(exit_com, comm[0]) == 0)
-			shell_exit(comm);
+		if (comm == NULL)
+			comm_null(buffer);
+		else if (_strcmp(exit_com, comm[0]) == 0)
+			shell_exit(buffer, comm, environ);
 		else if (_strcmp(env_com, comm[0]) == 0)
-			_env(environ);
+			print_env(buffer, comm, environ);
 		else if (stat(comm[0], &filestat) == 0)
 			execve(comm[0], comm, NULL);
 		else
@@ -38,6 +36,7 @@ int execute(char **argv, char **comm, int count)
 				if (stat(all_dir[i], &filestat2) == 0)
 					execve(all_dir[i], comm, NULL);
 			error_mess(argv, comm, count);
+			free_buf_n_comm(buffer, comm);
 			free_dbl_ptr(all_dir);
 			exit(EXIT_SUCCESS);
 		}
@@ -45,10 +44,10 @@ int execute(char **argv, char **comm, int count)
 	else
 	{
 		wait(&status);
-		if (comm == NULL)
-			free_dbl_ptr(comm);
-		else if (_strcmp(exit_com, comm[0]) == 0)
-			shell_exit(comm);
+		if (_strcmp(exit_com, comm[0]) == 0)
+			shell_exit(buffer, comm, environ);
+		else
+			free_buf_n_comm(buffer, comm);
 	}
 	return (1);
 }

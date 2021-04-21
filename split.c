@@ -1,6 +1,4 @@
 #include "holberton.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * split_line - splits the input line into command and arguments.
@@ -11,31 +9,59 @@
 char **split_line(char *line)
 {
 	char *token, **tokens;
-	size_t bufsize, i;
+	unsigned int bufsize, i = 0;
 
-	bufsize = TOK_BUFSIZE;
-	tokens = malloc(bufsize * sizeof(char *));
+	line[_strlen(line) - 1] = '\0';
+	bufsize = num_of_comms(line);
+	if (bufsize == 0)
+		return (NULL);
+	tokens = malloc((bufsize + 1) * sizeof(char *));
 	if (tokens == NULL)
 	{
 		write(STDERR_FILENO, "Allocation Error\n", 16);
-		exit(EXIT_FAILURE);
+		free(tokens);
+		return (NULL);
 	}
 	token = strtok(line, TOK_DELIM);
-	tokens[0] = token;
-	for (i = 1; token != NULL; i++)
+
+	for (i = 0; token != NULL; i++)
 	{
-		if (i == bufsize)
+		tokens[i] = malloc((_strlen(token) + 1) * sizeof(char));
+		if (tokens[i] == NULL)
 		{
-			bufsize += TOK_BUFSIZE;
-			tokens = _realloc(tokens, i, bufsize * sizeof(char *));
-			if (tokens == NULL)
-			{
-				write(STDERR_FILENO, "Allocation Error\n", 16);
-				exit(EXIT_FAILURE);
-			}
+			free_dbl_ptr(tokens);
+			write(STDERR_FILENO, "Allocation Error\n", 16);
+			return (NULL);
 		}
+		tokens[i] = _strdup(token);
 		token = strtok(NULL, TOK_DELIM);
-		tokens[i] = token;
 	}
+	tokens[i] = NULL;
+	free(token);
 	return (tokens);
+}
+
+/**
+ * num_of_comms - returns the number of commands entered by the user.
+ * @str: the commands entered by the user.
+ * Return: the number of commands (arguments).
+ */
+unsigned int num_of_comms(char *str)
+{
+	unsigned int comms, i, flag;
+
+	flag = 0;
+	comms = 0;
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] != ' ')
+			flag = 1;
+
+		if ((flag && str[i + 1] == ' ') || (flag && str[i + 1] == '\0'))
+		{
+			++comms;
+			flag = 0;
+		}
+	}
+	return (comms);
 }

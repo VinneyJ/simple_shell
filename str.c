@@ -44,7 +44,7 @@ char *_strcpy(char *dest, char *src)
  * @s1: the first string.
  * @s2: the second string.
  *
- * Return: 0 if they are equal, positive if s2 is greater and negative if not.
+ * Return: 0 if they are equal, positive if s1 is greater and negative if less.
  */
 
 int _strcmp(char *s1, char *s2)
@@ -58,6 +58,7 @@ int _strcmp(char *s1, char *s2)
 		if (j != 0)
 			break;
 	}
+
 	return (j);
 }
 

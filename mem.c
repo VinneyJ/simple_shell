@@ -78,10 +78,24 @@ void free_dbl_ptr(char **dbl_ptr)
 	if (dbl_ptr == NULL)
 	return;
 
-	for (i = 0; dbl_ptr[i]; i++)
+	for (i = 0; dbl_ptr[i]; ++i)
 		free(dbl_ptr[i]);
+
 	if (dbl_ptr[i] == NULL)
 		free(dbl_ptr[i]);
 
 	free(dbl_ptr);
+}
+
+/**
+ * free_buf_n_comm - frees the memory allocated by getline and also
+ *                  by the commands using malloc.
+ * @buffer: the buffer created by getline.
+ * @comms: the double pointer array created to store all commands.
+ */
+
+void free_buf_n_comm(char *buffer, char **comms)
+{
+	free(buffer);
+	free_dbl_ptr(comms);
 }

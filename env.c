@@ -60,10 +60,15 @@ unsigned int num_dir(char *path)
 {
 	unsigned int i, count = 0;
 
-	for (i = 0; path[i] != '\0'; i++)
-		if (path[i] == ':')
-			count++;
-	return (count + 1);
+	for (i = 0; path[i]; i++)
+	{
+		if (path[i] != ':')
+		{
+			if ((path[i + 1] == ':') || (path[i + 1] == '\0'))
+				count++;
+		}
+	}
+	return (count);
 }
 /**
  * store_path_command - stores the commands appended to the PATH directory.

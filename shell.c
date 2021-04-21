@@ -20,17 +20,12 @@ int main(int ac, char **argv)
 	{
 
 		++count;
+		line = NULL;
+		args = NULL;
 		line = _readline();
-		if (_strcmp(line, "\n") == 0)
-		{
-			free(line);
-			continue;
-		}
+
 		args = split_line(line);
-
-		status = execute(argv, args, count);
-
-		free_dbl_ptr(args);
+		status = execute(argv, line, args, count);
 	}
 
 	return (0);
