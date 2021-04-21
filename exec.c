@@ -44,10 +44,11 @@ int execute(char **argv, char *buffer, char **comm, int count)
 	else
 	{
 		wait(&status);
-		if (_strcmp(exit_com, comm[0]) == 0)
+		if (comm == NULL)
+			free_buf_n_comm(buffer, comm);
+		else if (_strcmp(exit_com, comm[0]) == 0)
 			shell_exit(buffer, comm, environ);
 		else
 			free_buf_n_comm(buffer, comm);
-	}
-	return (1);
+	} return (1);
 }

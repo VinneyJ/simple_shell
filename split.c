@@ -33,7 +33,7 @@ char **split_line(char *line)
 			write(STDERR_FILENO, "Allocation Error\n", 16);
 			return (NULL);
 		}
-		tokens[i] = _strdup(token);
+		_memcpy(tokens[i], token, _strlen(token) + 1);
 		token = strtok(NULL, TOK_DELIM);
 	}
 	tokens[i] = NULL;
