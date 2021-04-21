@@ -23,7 +23,7 @@ int execute(char **argv, char *buffer, char **comm, int count);
 void error_mess(char **argv, char **comm, int count);
 int _puterror(char c);
 void fork_fail(void);
-void command_null(char *buffer);
+void comm_null(char *buffer);
 
 void Sigint_handler(int sign);
 
