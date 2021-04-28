@@ -38,7 +38,7 @@ int execute(char **argv, char *buffer, char **comm, int count)
 			error_mess(argv, comm, count);
 			free_buf_n_comm(buffer, comm);
 			free_dbl_ptr(all_dir);
-			exit(127);
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
