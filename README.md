@@ -107,7 +107,7 @@ AUTHORS  README.md  builtin.c  env.c  error_message.c  exec.c  holberton.h  hsh 
 ```
 
 ## Environment Information
-This shell was built and tested in the following environment by [Ermias Telahun](https://github.com/ermtel) and [Vincent Otieno](https://github.com/VinneyJ) as a project for [ALX Africa}(https://www.alxafrica.com/) in collaboration with [Holberton School](https://www.holbertonschool.com/).
+This shell was built and tested in the following environment by [Ermias Telahun](https://github.com/ermtel) and [Vincent Otieno](https://github.com/VinneyJ) as a project for [ALX Africa](https://www.alxafrica.com/) in collaboration with [Holberton School](https://www.holbertonschool.com/).
 
 | Feature | Version |
 |--|--|
